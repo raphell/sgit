@@ -7,13 +7,11 @@ import Commands.Init._
 
 
 class AddTest extends FunSpec with Matchers with BeforeAndAfter {
-  println("IN ADD TEST")
-
+  
   val currentDir: File = getShellCurrentDir
 
   after {
     if ((currentDir / ".sgit").exists()) {
-      println("DELETED .SGIT WITH AFTER")
       (currentDir / ".sgit").delete()
     }
   }
@@ -22,7 +20,6 @@ class AddTest extends FunSpec with Matchers with BeforeAndAfter {
     try test()
     finally {
       if ((currentDir / ".sgit").exists()) {
-        println("DELETED .SGIT WITH FIXTURE")
         (currentDir / ".sgit").delete()
       }
     }
