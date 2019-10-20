@@ -37,8 +37,7 @@ object Commit {
 
 
   def displayCommitAndParents(commit: File, sgit: File): Unit ={
-    println("commit: "+ commit.parent.name + commit.name)
-    println(commit.contentAsString.linesIterator.toArray.filter(line => line.contains("Author"))(0))
+
     println(commit.contentAsString.linesIterator.toArray.filter(line => line.contains("Date"))(0))
     println(" ")
     println({
