@@ -17,7 +17,7 @@ object Commit {
 
     getCurrentCommit(sgit) match{
       case Some(parent) => newCommit.appendLine("Parent " + parent)
-      case None => println("hello")
+      case None =>
     }
 
     newCommit.appendLine("Date :  " + Calendar.getInstance().getTime)
