@@ -37,7 +37,7 @@ object Commit {
 
 
   def displayCommitAndParents(commit: File, sgit: File): Unit ={
-
+    println("----------------------------------------------")
     println(commit.contentAsString.linesIterator.toArray.filter(line => line.contains("Date"))(0))
     println(" ")
     println({
