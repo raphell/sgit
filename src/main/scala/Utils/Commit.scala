@@ -58,11 +58,11 @@ object Commit {
       .filter(line => line.contains("Parent"))
       .filter(line => {
         val parentHash = line.split(" ")(1)
-        (sgit/"objects"/parentHash.take(2)/parentHash.substring(2)).isRegularFile
+        File(parentHash).isRegularFile
       })
       .map(line => {
         val parentHash = line.split(" ")(1)
-        (sgit/"objects"/parentHash.take(2)/parentHash.substring(2))
+        File(parentHash)
       })
 
     if (parents.size!=0) Some(parents)
