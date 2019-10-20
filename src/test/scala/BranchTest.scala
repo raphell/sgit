@@ -22,7 +22,6 @@ class BranchTest extends FunSpec with Matchers with BeforeAndAfter {
   }
   after {
     if ((currentDir / ".sgit").exists()) {
-      println("DELETED .SGIT WITH AFTER")
       (currentDir / ".sgit").delete()
     }
   }
@@ -31,7 +30,6 @@ class BranchTest extends FunSpec with Matchers with BeforeAndAfter {
     try test()
     finally {
       if ((currentDir / ".sgit").exists()) {
-        println("DELETED .SGIT WITH FIXTURE")
         (currentDir / ".sgit").delete()
       }
     }
