@@ -12,8 +12,6 @@ object Add {
 
 
   def add(sgitDir : File, paths : Array[String] ) : Unit = {
-    paths.foreach(path => println("PATHS : "+path))
-
     val files = getFilesToAdd(sgitDir, paths)
 
     files.foreach(file => {
