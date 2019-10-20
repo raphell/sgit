@@ -22,6 +22,7 @@ object CommandParser {
       case None => parse(args) match {
         case Some(config) => config.mode match{
           case "init" => init()
+          case "" => println("You need to write a command after 'sgit'")
           case _ => println("ERROR, you are not in a sgit repository")
         }
       }

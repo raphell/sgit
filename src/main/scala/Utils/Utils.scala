@@ -7,7 +7,7 @@ object Utils {
 
 
   def getShellCurrentDir : File = {
-    (System.getProperty("user.dir")/"root")
+    File(System.getProperty("user.dir"))
   }
 
 
