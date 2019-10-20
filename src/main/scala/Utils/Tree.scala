@@ -62,7 +62,6 @@ object Tree {
 
 
   def createDirsFromTree(parentFile : File, treeToForm: File, typeFile : String, name :String, sgit : File): Unit = {
-    println("IN CREATE DIR FROM TREE")
 
     typeFile match {
       case "tree" => (parentFile/name).createDirectoryIfNotExists()
@@ -79,11 +78,9 @@ object Tree {
       else (parentFile/name)
     }
 
-    println("TREE TO FORM : " + treeToForm.path.toString + " : " + treeToForm.exists)
     if (typeFile!="blob"){
       val lines = treeToForm.lineIterator
       lines.foreach( line => {
-        println("LINE TO CREATE : " + line)
         val typeF = line.split(" ")(1)
         val dirF = line.split(" ")(2).take(2)
         val fileF = line.split(" ")(2).substring(2)
