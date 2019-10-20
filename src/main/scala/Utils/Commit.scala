@@ -55,19 +55,14 @@ object Commit {
   }
 
   def getParentCommit(sgit : File, commit: File): Option[Array[File]] ={
-    println("IN GET PARENTS")
     val parents = commit.lineIterator.toArray
       .filter(line => line.contains("Parent"))
       .filter(line => {
         val parentHash = line.split(" ")(1)
-        println("PARENT HASH BEFORE" + parentHash)
-        println((sgit/"object"/parentHash.take(2)/parentHash.substring(2)))
-        println((sgit/"object"/parentHash.take(2)/parentHash.substring(2)).exists)
         (sgit/"objects"/parentHash.take(2)/parentHash.substring(2)).isRegularFile
       })
       .map(line => {
         val parentHash = line.split(" ")(1)
-        println("PARENT HASSHHHHH : :" + parentHash)
         (sgit/"objects"/parentHash.take(2)/parentHash.substring(2))
       })
 

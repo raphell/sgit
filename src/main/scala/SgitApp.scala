@@ -1,8 +1,8 @@
-import _root_.CommandLineInterpreter.CommandParser._
-import _root_.Utils.Utils._
+import CommandLineInterpreter.CommandParser._
 
 
 object SgitApp extends App{
+  println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA : "+ args)
   dispatch(args)
 }
 

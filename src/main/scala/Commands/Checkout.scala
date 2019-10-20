@@ -11,8 +11,6 @@ object Checkout {
 
 
   def checkout(sgit : File, branch : String): Unit ={
-    println("IN CHECKOUT")
-
     val conflictFiles = getNotSavedFile(sgit, branch)
     if (conflictFiles.size==0){
       val treeToForm = {

@@ -8,18 +8,14 @@ import Blob._
 object Tree {
 
   def createTree(sgit : File, dir : File): String = {
-    println("IN CREATE TREE FOR : " + dir.path.toString)
-
     val newTree = (sgit / dir.name).createFileIfNotExists()
     val children : Array[File] = dir.children.toArray
 
     val fileChildren : Array[File] = children.filterNot(f => {f.isDirectory && f.exists}).filter(f => isInIndex(f, sgit))
     val dirChildren : Array[File] = children.filter(dir => dir.isDirectory).filter(dir => isInIndex(dir, sgit))
 
-    println("There is " + fileChildren.size + " files and " + dirChildren.size + " directories")
-
     dirChildren.foreach(dir => writeTreeInTree(createTree(sgit, dir), dir.name, newTree))
-    fileChildren.foreach(f => {println("WRITE BLOB IN TREE : " + f.path.toString)
+    fileChildren.foreach(f => {
       writeBlobInTree(f, newTree)
     })
 
@@ -29,7 +25,6 @@ object Tree {
 
     if (( sgit/"objects"/newTreeDir/newTreeName).isRegularFile){
       newTree.delete()
-      println("tree already exists")
     }
     else{
       val treeFile : File = ( sgit/"objects"/newTreeDir/newTreeName ).createFileIfNotExists(createParents = true)
@@ -49,7 +44,6 @@ object Tree {
 
 
   def isFileInTree(currentTree: File, file: String, sgit : File) : Boolean = {
-    println("IN IS FILE IN TREE")
     val relativePath : Array[String] = file.split("/")
 
     val lines = currentTree.lineIterator.toArray
@@ -58,7 +52,6 @@ object Tree {
     if ( line.size > 0 ){
       if (relativePath.size > 1){
         val newFileHash = line(0).split(" ")(2)
-        println("NEW HASH : " + newFileHash)
         isFileInTree(sgit/"objects"/newFileHash.take(2)/newFileHash.substring(2), relativePath.slice(1,relativePath.size).mkString("/"), sgit)
       }
       else true

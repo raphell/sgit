@@ -16,12 +16,9 @@ object Branch {
 
 
   def deleteFilesOfCurrentBranch(index: File, root : File): Unit = {
-    println("IN DELETE FILES")
-    println("index size : " + index.lineIterator.size)
     index.lineIterator.toArray.foreach(line => println("Line IN INDEX : " + line))
     val listOfFile = index.lineIterator.toArray.map( line => (root/line.split(" ")(0)) )
     listOfFile.foreach(file => {
-      println("DELETE : " + file.path.toString)
       file.delete()
     })
   }
@@ -54,8 +51,6 @@ object Branch {
 
 
   def getNotSavedFile(sgit : File, branchName : String): Array[String] = {
-    println("IN GET FILE NOT SAVED")
-
     val filesToCheck : Array[String] = getPathsFromIndex(sgit)
     filesToCheck.foreach(file => println(" FILES TO CHECK : "+ file))
 
@@ -65,8 +60,6 @@ object Branch {
       val rootTreeHash : String = (sgit/"objects"/commitHash.take(2)/commitHash.substring(2)).lineIterator.toArray.filter(line => line contains "tree")(0).split(" ")(1)
       (sgit/"objects"/rootTreeHash.take(2)/rootTreeHash.substring(2))
     }
-
-    println("CURRENT ROOT TREE : " + currentRootTree)
 
     val nextRootTree = {
       val commitHash = (sgit/"refs"/"heads"/branchName).contentAsString

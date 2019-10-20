@@ -31,9 +31,7 @@ object Status {
   def getUntrackedFiles(file: File, sgit : File): Array[File] = {
     val children = file.children.toArray
     val untracked = children.filterNot(child => isInIndex(child, sgit))
-    untracked.foreach(un => println("UNTRAKED : " + un.name))
     val maybeTracked = children.filter(child => child.isDirectory).filter(child => isInIndex(child, sgit))
-    (untracked ++ maybeTracked.map( f => getUntrackedFiles(f, sgit) ).flatten).foreach(un => println("UNTRAKED  FINAL: " + un.name))
     untracked ++ maybeTracked.map( f => getUntrackedFiles(f, sgit) ).flatten
   }
 

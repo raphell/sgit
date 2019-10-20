@@ -6,7 +6,6 @@ object Blob {
 
 
   def addBlobToObjects(sgit : File, file : File): Unit ={
-    println("IN ADD BLOB")
     val data = file.contentAsString
     val dataHash = file.sha1.toUpperCase
     val objectDir = dataHash.take(2)

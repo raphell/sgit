@@ -1,7 +1,8 @@
 package Commands
 
-import better.files.File
+import java.util.Calendar
 
+import better.files.File
 import Utils.Tree._
 import Utils.Commit._
 import Utils.Branch._
@@ -9,8 +10,6 @@ import Utils.Branch._
 object Commit {
 
   def commit(sgit : File, message : String): Unit ={
-    println("IN COMMIT")
-
     val newCommit = (sgit/"commitTemp").createFile()
     val rootTreeHash = createTree(sgit, sgit.parent)
 
@@ -21,8 +20,7 @@ object Commit {
       case None => println("hello")
     }
 
-    newCommit.appendLine("Author ")
-    newCommit.appendLine("Date :  ")
+    newCommit.appendLine("Date :  " + Calendar.getInstance().getTime)
     newCommit.appendLine(message)
 
     val commitHash = newCommit.sha1

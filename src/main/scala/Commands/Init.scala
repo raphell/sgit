@@ -11,6 +11,5 @@ object Init{
     (path/".sgit"/"refs"/"tags").createDirectories()
     (path/".sgit"/"index").createFile()
     (path/".sgit"/"HEAD").createFile().overwrite("ref: refs/heads/master")
-    println("EVERYTHINGS CREATED : "+ (path/".sgit"/"index").exists )
   }
 }
